@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>최수진 | XR 버추얼 강의 스튜디오 포트폴리오</title>
+  <style>
+    :root {
+      --bg-dark: #070b14;
+      --bg-card: #0e1624;
+      --bg-card-hover: #131e31;
+      --cyan: #39d6ff;
+      --cyan-dim: rgba(57, 214, 255, 0.15);
+      --border: rgba(57, 214, 255, 0.25);
+      --text-main: #f1f5f9;
+      --text-sub: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 헤더 히어로 영역 */
+    header {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(circle at 50% 0%, rgba(57, 214, 255, 0.12), transparent 65%);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--cyan);
+      background: var(--cyan-dim);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    header h1 span {
+      color: var(--cyan);
+    }
+
+    header p.subtitle {
+      font-size: 1.15rem;
+      color: var(--text-sub);
+      max-width: 720px;
+      margin: 0 auto 24px;
+    }
+
+    .author-name {
+      display: inline-block;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+    }
+
+    /* 공통 섹션 스타일 */
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .section-tag {
+      color: var(--cyan);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    /* 00 아키텍처 & 기획 의도 */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+    }
+
+    .box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .box h3 {
+      font-size: 1.2rem;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+
+    .box ul {
+      list-style: none;
+    }
+
+    .box ul li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 12px;
+      color: var(--text-sub);
+    }
+
+    .box ul li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+    }
+
+    .flow-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .flow-node {
+      background: rgba(7, 11, 20, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .flow-node .role {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+      display: block;
+    }
+
+    .flow-node .desc {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .flow-node .tech {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      text-align: right;
+    }
+
+    .flow-arrow {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--cyan);
+    }
+
+    /* 01~07 기능 카드 리스트 */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .feature-card {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      align-items: center;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--cyan);
+      background: var(--bg-card-hover);
+    }
+
+    /* 2개 영상 나란히 배치용 (05번 석양/야간) */
+    .dual-video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .video-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(7, 11, 20, 0.85);
+      color: var(--cyan);
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      z-index: 2;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #03060c;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .feature-info .num {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .feature-info h3 {
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tech-tags span {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--cyan-dim);
+      color: var(--cyan);
+      border: 1px solid rgba(57, 214, 255, 0.3);
+    }
+
+    .feature-info ul {
+      list-style: none;
+    }
+
+    .feature-info ul li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 10px;
+      color: #cbd5e1;
+      font-size: 0.96rem;
+    }
+
+    .feature-info ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-weight: bold;
+    }
+
+    /* 핵심 성과 3가지 */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .summary-card .step {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .summary-card h4 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .summary-card p {
+      font-size: 0.94rem;
+      color: var(--text-sub);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-sub);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .arch-grid,
+      .feature-card,
+      .summary-grid,
+      .dual-video-grid {
+        grid-template-columns: 1fr;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 타이틀 -->
+  <header>
+    <div class="container">
+      <div class="badge">XR VIRTUAL STUDIO PORTFOLIO</div>
+      <h1>태블릿 연동 <span>XR 버추얼 강의 스튜디오</span></h1>
+      <p class="subtitle">
+        Unreal Engine 5.8 &amp; C# WebSocket 기반 실시간 양방향 이러닝 제작 시스템
+      </p>
+      <div class="author-name">최수진</div>
+    </div>
+  </header>
+
+  <!-- 00 배경 및 아키텍처 -->
+  <section>
+    <div class="container">
+      <div class="section-tag">00 · BACKGROUND &amp; ARCHITECTURE</div>
+      <h2 class="section-title">프로젝트 기획 의도 &amp; 시스템 아키텍처</h2>
+      <div class="arch-grid">
+        <div class="box">
+          <h3>기획 의도</h3>
+          <ul>
+            <li>이러닝 제작 과정의 후반 그래픽 합성 공수와 야외 로케이션 촬영 제약을 해결하기 위한 실시간 XR 스튜디오 구축</li>
+            <li>교수자가 태블릿 웹 UI로 언리얼 엔진 가상 스튜디오를 직접 제어하는 통합 파이프라인 구현</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>실시간 양방향 시스템 흐름 (System Flow)</h3>
+          <div class="flow-diagram">
+            <div class="flow-node">
+              <div>
+                <span class="role">CLIENT</span>
+                <span class="desc">교수자 태블릿 웹 UI</span>
+              </div>
+              <div class="tech">tablet.html</div>
+            </div>
+            <div class="flow-arrow">⇅ WebSocket / HTTP API (JSON 명령어 동기화)</div>
+            <div class="flow-node">
+              <div>
+                <span class="role">SERVER</span>
+                <span class="desc">C# ASP.NET Core / SignalR 중계 서버</span>
+              </div>
+              <div class="tech">Hub · HTTP API · LibreOffice CLI</div>
+            </div>
+            <div class="flow-arrow">⇅ 무지연 양방향 데이터 송수신</div>
+            <div class="flow-node">
+              <div>
+                <span class="role">ENGINE</span>
+                <span class="desc">Unreal Engine 5.8 가상 스튜디오</span>
+              </div>
+              <div class="tech">BP_SmartScreen / CineCamera</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 ~ 07 핵심 기능 시연 -->
+  <section>
+    <div class="container">
+      <div class="section-tag">CORE FEATURES &amp; DEMO</div>
+      <h2 class="section-title">핵심 구현 기능 시연 (7 Modules)</h2>
+
+      <div class="feature-list">
+
+        <!-- 01 -->
+        <article class="feature-card">
+          <div class="video-wrap">
+            <video src="video/camera.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+            <div class="video-fallback">영상 준비 중 (video/camera.mp4)</div>
+          </div>
+          <div class="feature-info">
+            <div class="num">01 · CAMERA &amp; LENS CONTROL</div>
+            <h3>실시간 카메라 &amp; 렌즈 제어 (3-Cam)</h3>
+            <div class="tech-tags">
+              <span>Cine Camera Actor</span>
+              <span>UMG 슬라이더·버튼 제어</span>
+            </div>
+            <ul>
+              <li>실제 방송 카메라(광각 16-35mm, 표준 24-70mm, 망원 28-135mm) 3종 즉시 전환</li>
+              <li>화각(Zoom)·색온도(WB)·조리개(F-Stop)·셔터스피드·ISO 실시간 광학 파라미터 제어</li>
+              <li>방송 현장 실무 기준을 반영한 직관적인 카메라·렌즈 제어 UI 설계</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="feature-card">
+          <div class="video-wrap">
+            <video src="video/whiteboard.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+            <div class="video-fallback">영상 준비 중 (video/whiteboard.mp4)</div>
+          </div>
+          <div class="feature-info">
+            <div class="num">02 · REAL-TIME WHITEBOARD</div>
+            <h3>웹(태블릿) 연동 실시간 전자칠판 판서</h3>
+            <div class="tech-tags">
+              <span>C# ASP.NET Core</span>
+              <span>SignalR</span>
+              <span>WebSocket</span>
+            </div>
+            <ul>
+              <li>별도 앱 설치 없이 태블릿 웹 브라우저(tablet.html) 접속만으로 즉시 판서</li>
+              <li>색상 팔레트, 브러시 굵기 슬라이더, 부분 지우개 및 전체 초기화 실시간 전송</li>
+              <li>언리얼 3D 스마트 스크린(BP_SmartScreen)에 무지연 양방향 필기 동기화</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 03 -->
+        <article class="feature-card">
+          <div class="video-wrap">
+            <video src="video/ppt.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+            <div class="video-fallback">영상 준비 중 (video/ppt.mp4)</div>
+          </div>
+          <div class="feature-info">
+            <div class="num">03 · AUTO PPT PIPELINE</div>
+            <h3>PPT 자동 변환 및 원격 슬라이드 제어</h3>
+            <div class="tech-tags">
+              <span>LibreOffice CLI (soffice.exe)</span>
+              <span>HTTP API</span>
+              <span>동적 텍스처 로드</span>
+            </div>
+            <ul>
+              <li>웹에서 .ppt/.pptx 파일 업로드 시 서버 백그라운드에서 고해상도 PNG 자동 변환</li>
+              <li>변환된 슬라이드를 가상 스튜디오 스크린에 실시간 송출 및 페이지 전환 연동</li>
+              <li>후반 편집·합성 공수를 대폭 절감하는 이러닝 제작 자동화 파이프라인</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 04 -->
+        <article class="feature-card">
+          <div class="video-wrap">
+            <video src="video/ai.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+            <div class="video-fallback">영상 준비 중 (video/ai.mp4)</div>
+          </div>
+          <div class="feature-info">
+            <div class="num">04 · LIVE AI ASSISTANT</div>
+            <h3>실시간 AI 어시스턴트 질의응답 연동</h3>
+            <div class="tech-tags">
+              <span>AI API 연동</span>
+              <span>WebSocket</span>
+              <span>3D 위젯 UI</span>
+            </div>
+            <ul>
+              <li>강의 흐름을 끊지 않고 태블릿 웹 UI에서 질문 입력 시 스크린 모드 즉시 전환</li>
+              <li>질문과 AI 답변 텍스트를 가상 스튜디오 내 3D 화면에 실시간 렌더링</li>
+              <li>교수자와 학습자 간 시각적 설명력을 높이는 인터랙티브 교보재 기능</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 05 (석양 & 야간 나란히 배치) -->
+        <article class="feature-card">
+          <div class="dual-video-grid">
+            <div class="video-wrap">
+              <span class="video-label">SUNSET · 석양</span>
+              <video src="video/sunset.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+              <div class="video-fallback">video/sunset.mp4</div>
+            </div>
+            <div class="video-wrap">
+              <span class="video-label">NIGHT · 야간</span>
+              <video src="video/night.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+              <div class="video-fallback">video/night.mp4</div>
+            </div>
+          </div>
+          <div class="feature-info">
+            <div class="num">05 · DYNAMIC TIME OF DAY</div>
+            <h3>현장형 로케이션 시간대 실시간 전환</h3>
+            <div class="tech-tags">
+              <span>Directional Light</span>
+              <span>Sky Atmosphere 동적 제어</span>
+            </div>
+            <ul>
+              <li>파르테논 신전 현장형 스튜디오에서 버튼 클릭 한 번으로 시간대 즉시 전환</li>
+              <li>태양 고도·대기 산란·환경광을 노을(Sunset)과 야간(Night)으로 실시간 연출</li>
+              <li>날씨·시간·장소 제약을 극복하는 가상 로케이션 촬영 환경 구현</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 06 -->
+        <article class="feature-card">
+          <div class="video-wrap">
+            <video src="video/lighting.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+            <div class="video-fallback">영상 준비 중 (video/lighting.mp4)</div>
+          </div>
+          <div class="feature-info">
+            <div class="num">06 · LIGHTING &amp; VFX CONTROL</div>
+            <h3>야간 공간 조명 색온도 및 파티클 연동</h3>
+            <div class="tech-tags">
+              <span>Point/Spot Light</span>
+              <span>Niagara 화로 불꽃 파티클</span>
+            </div>
+            <ul>
+              <li>야간 모드 전환 시 신전 주변 화로(Brazier)의 나이아가라 불꽃 이펙트 자동 점등</li>
+              <li>웜톤(전구색)·주광색·청색 3종 조명 색온도 프리셋 및 광량 슬라이더 제어</li>
+              <li>교과 분위기에 맞춘 스튜디오 공간 무드 실시간 라이팅 연출</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 07 -->
+        <article class="feature-card">
+          <div class="video-wrap">
+            <video src="video/switching.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+            <div class="video-fallback">영상 준비 중 (video/switching.mp4)</div>
+          </div>
+          <div class="feature-info">
+            <div class="num">07 · DUAL STUDIO SWITCHING</div>
+            <h3>듀얼 스튜디오 통합 전환 아키텍처</h3>
+            <div class="tech-tags">
+              <span>통합 웹-언리얼 제어 허브</span>
+              <span>레벨/카메라/위젯 스위칭</span>
+            </div>
+            <ul>
+              <li>강의형 스튜디오 · 파르테논 현장형 로케이션 · 3D 홀로그램 뷰 3개 공간 구성</li>
+              <li>웹과 언리얼 양쪽에서 버튼 하나로 즉시 스위칭</li>
+              <li>촬영 중 공간 전환을 한 화면에서 처리하는 통합 연출 구조</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 기대 효과 및 핵심 강점 -->
+  <section>
+    <div class="container">
+      <div class="section-tag">PROJECT IMPACT</div>
+      <h2 class="section-title">핵심 기대 효과 및 강점</h2>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="step">01</div>
+          <h4>제작 효율 극대화</h4>
+          <p>PPT 자동 변환 및 실시간 판서·합성으로 후반 편집 공수 대폭 절감</p>
+        </div>
+        <div class="summary-card">
+          <div class="step">02</div>
+          <h4>촬영 한계 극복</h4>
+          <p>날씨·시간·장소 제약 없이 스튜디오 내에서 다채로운 로케이션 연출</p>
+        </div>
+        <div class="summary-card">
+          <div class="step">03</div>
+          <h4>실무·기술 융합</h4>
+          <p>이러닝 제작 실무 노하우와 언리얼 엔진·C# 풀스택 제어 기술의 결합</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 최수진 (Choi Sujin). All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
