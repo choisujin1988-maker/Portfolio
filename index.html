@@ -22,6 +22,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
       background-color: var(--bg-dark);
@@ -38,9 +42,9 @@
 
     /* 헤더 히어로 영역 */
     header {
-      padding: 80px 0 60px;
+      padding: 72px 0 54px;
       border-bottom: 1px solid var(--border);
-      background: radial-gradient(circle at 50% 0%, rgba(57, 214, 255, 0.12), transparent 65%);
+      background: radial-gradient(circle at 50% 0%, rgba(57, 214, 255, 0.14), transparent 65%);
       text-align: center;
     }
 
@@ -53,7 +57,7 @@
       background: var(--cyan-dim);
       border: 1px solid var(--border);
       border-radius: 999px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       letter-spacing: 0.05em;
     }
 
@@ -72,7 +76,7 @@
       font-size: 1.15rem;
       color: var(--text-sub);
       max-width: 720px;
-      margin: 0 auto 24px;
+      margin: 0 auto 20px;
     }
 
     .author-name {
@@ -81,6 +85,41 @@
       font-weight: 700;
       color: var(--cyan);
       letter-spacing: 0.08em;
+    }
+
+    /* 상단 빠른 이동 고정 네비게이션 */
+    .quick-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7, 11, 20, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+
+    .quick-nav .nav-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .quick-nav a {
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      padding: 6px 13px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .quick-nav a:hover {
+      color: var(--cyan);
+      background: var(--cyan-dim);
+      border-color: var(--border);
     }
 
     /* 공통 섹션 스타일 */
@@ -101,14 +140,15 @@
     .section-title {
       font-size: 1.9rem;
       font-weight: 700;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
-    /* 00 아키텍처 & 기획 의도 */
+    /* 아키텍처 & 기획 의도 */
     .arch-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 24px;
+      margin-bottom: 32px;
     }
 
     .box {
@@ -145,22 +185,22 @@
     .flow-diagram {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-top: 12px;
+      gap: 12px;
+      margin-top: 10px;
     }
 
     .flow-node {
       background: rgba(7, 11, 20, 0.7);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 14px 18px;
+      padding: 13px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .flow-node .role {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--cyan);
       display: block;
@@ -168,37 +208,124 @@
 
     .flow-node .desc {
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.98rem;
     }
 
     .flow-node .tech {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--text-sub);
       text-align: right;
     }
 
     .flow-arrow {
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--cyan);
     }
 
-    /* 01~07 기능 카드 리스트 (상단 대형 영상 + 하단 2열 텍스트) */
-    .feature-list {
+    /* 실제 스튜디오 송출 구도 쇼케이스 카드 */
+    .usecase-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .usecase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .usecase-header h3 {
+      font-size: 1.3rem;
+      color: var(--text-main);
+    }
+
+    .usecase-header span {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--cyan);
+      background: var(--cyan-dim);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .usecase-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(57, 214, 255, 0.25);
+      background: #03060c;
+    }
+
+    .usecase-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .usecase-caption {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .caption-item {
+      background: rgba(7, 11, 20, 0.65);
+      border: 1px solid rgba(57, 214, 255, 0.16);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .caption-item strong {
+      display: block;
+      color: var(--cyan);
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+
+    .caption-item p {
+      color: var(--text-sub);
+      font-size: 0.9rem;
+    }
+
+    /* 핵심 기능 레이아웃 (대형 하이라이트 1열 + 2열 그리드 혼합) */
+    .feature-stack {
       display: flex;
       flex-direction: column;
-      gap: 48px;
+      gap: 36px;
+    }
+
+    .feature-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
     }
 
     .feature-card {
       display: flex;
       flex-direction: column;
-      gap: 26px;
+      gap: 22px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 32px;
+      padding: 28px;
       transition: border-color 0.25s, background 0.25s;
+      scroll-margin-top: 76px;
+    }
+
+    .feature-card.highlight {
+      border-color: rgba(57, 214, 255, 0.45);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
 
     .feature-card:hover {
@@ -206,7 +333,7 @@
       background: var(--bg-card-hover);
     }
 
-    /* 2개 영상 나란히 배치용 (05번 석양/야간) */
+    /* 2개 영상 나란히 배치용 (석양/야간) */
     .dual-video-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -261,26 +388,36 @@
       padding: 16px;
     }
 
-    /* 하단 설명 2열 배치 */
-    .feature-info {
+    /* 대형 카드용 2열 텍스트 */
+    .feature-info-wide {
       display: grid;
       grid-template-columns: 1fr 1.45fr;
       gap: 28px;
       align-items: start;
-      padding-top: 6px;
     }
 
-    .feature-info .num {
-      font-size: 0.9rem;
+    /* 2열 그리드 카드용 세로 텍스트 */
+    .feature-info-compact {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .num {
+      font-size: 0.85rem;
       font-weight: 800;
       color: var(--cyan);
       letter-spacing: 0.08em;
       margin-bottom: 6px;
     }
 
-    .feature-info h3 {
-      font-size: 1.55rem;
-      margin-bottom: 14px;
+    .feature-card h3 {
+      font-size: 1.42rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-card.highlight h3 {
+      font-size: 1.58rem;
     }
 
     .tech-tags {
@@ -290,31 +427,31 @@
     }
 
     .tech-tags span {
-      font-size: 0.82rem;
-      padding: 5px 11px;
+      font-size: 0.8rem;
+      padding: 4px 10px;
       border-radius: 6px;
       background: var(--cyan-dim);
       color: var(--cyan);
       border: 1px solid rgba(57, 214, 255, 0.3);
     }
 
-    .feature-info ul {
+    .feature-card ul {
       list-style: none;
     }
 
-    .feature-info ul li {
+    .feature-card ul li {
       position: relative;
       padding-left: 16px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
       color: #cbd5e1;
-      font-size: 1rem;
+      font-size: 0.97rem;
     }
 
-    .feature-info ul li:last-child {
+    .feature-card ul li:last-child {
       margin-bottom: 0;
     }
 
-    .feature-info ul li::before {
+    .feature-card ul li::before {
       content: "•";
       position: absolute;
       left: 0;
@@ -360,9 +497,11 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .arch-grid,
-      .feature-info,
+      .feature-info-wide,
+      .feature-grid-2col,
+      .usecase-caption,
       .summary-grid,
       .dual-video-grid {
         grid-template-columns: 1fr;
@@ -390,17 +529,31 @@
     </div>
   </header>
 
-  <!-- 00 배경 및 아키텍처 -->
-  <section>
+  <!-- 빠른 이동 네비게이션 -->
+  <nav class="quick-nav">
+    <div class="container nav-inner">
+      <a href="#overview">스튜디오 활용 구도</a>
+      <a href="#feat-01">01 3D 홀로그램·판서</a>
+      <a href="#feat-02">02 실시간 전자칠판</a>
+      <a href="#feat-03">03 PPT 자동 변환</a>
+      <a href="#feat-04">04 카메라·렌즈 제어</a>
+      <a href="#feat-05">05 AI 어시스턴트</a>
+      <a href="#feat-06">06 조명·파티클 연출</a>
+      <a href="#feat-07">07 시간대 전환</a>
+    </div>
+  </nav>
+
+  <!-- 배경 및 아키텍처 + 실제 송출 구도 -->
+  <section id="overview">
     <div class="container">
-      <div class="section-tag">00 · BACKGROUND &amp; ARCHITECTURE</div>
+      <div class="section-tag">BACKGROUND &amp; ARCHITECTURE</div>
       <h2 class="section-title">프로젝트 기획 의도 &amp; 시스템 아키텍처</h2>
       <div class="arch-grid">
         <div class="box">
           <h3>기획 의도</h3>
           <ul>
             <li>이러닝 제작 과정의 후반 그래픽 합성 공수와 야외 로케이션 촬영 제약을 해결하기 위한 실시간 XR 스튜디오 구축</li>
-            <li>교수자가 태블릿 웹 UI로 언리얼 엔진 가상 스튜디오를 직접 제어하는 통합 파이프라인 구현</li>
+            <li>교수자가 태블릿 웹 UI로 언리얼 엔진 가상 스튜디오의 PPT·판서·3D 홀로그램·조명을 직접 제어하는 통합 파이프라인 구현</li>
           </ul>
         </div>
         <div class="box">
@@ -432,47 +585,72 @@
           </div>
         </div>
       </div>
+
+      <!-- 실제 강의 송출 구도 예시 컷 -->
+      <div class="usecase-card">
+        <div class="usecase-header">
+          <h3>실제 이러닝 강의 적용 구도 (In-Engine Broadcast Framing)</h3>
+          <span>실사 강사 크로마키 및 버추얼 아바타 송출 대응</span>
+        </div>
+        <div class="usecase-image-wrap">
+          <img src="images/studio_usecase.png" alt="XR 버추얼 강의 스튜디오 실제 강사 배치 송출 구도" />
+        </div>
+        <div class="usecase-caption">
+          <div class="caption-item">
+            <strong>좌측 메인 강의 스크린</strong>
+            <p>태블릿에서 제어하는 PPT 슬라이드와 실시간 전자칠판 판서가 출력되는 주 교보재 영역</p>
+          </div>
+          <div class="caption-item">
+            <strong>중앙 강사 스테이지</strong>
+            <p>실사 크로마키 인물 또는 3D 버추얼 강사가 스튜디오 공간 조명과 자연스럽게 어우러지는 위치</p>
+          </div>
+          <div class="caption-item">
+            <strong>우측 보조 모니터 &amp; 홀로그램</strong>
+            <p>참고 자료 띄우기 및 버튼 토글 시 화면 중앙으로 3D 홀로그램 교보재가 확대 전환되는 구조</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 01 ~ 07 핵심 기능 시연 -->
+  <!-- 핵심 기능 시연 (강약 조절 레이아웃) -->
   <section>
     <div class="container">
       <div class="section-tag">CORE FEATURES &amp; DEMO</div>
       <h2 class="section-title">핵심 구현 기능 시연 (7 Modules)</h2>
 
-      <div class="feature-list">
+      <div class="feature-stack">
 
-        <!-- 01 -->
-        <article class="feature-card">
+        <!-- 01 (핵심 하이라이트 대형 카드) -->
+        <article id="feat-01" class="feature-card highlight">
           <div class="video-wrap">
-            <video src="video/camera.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
-            <div class="video-fallback">영상 준비 중 (video/camera.mp4)</div>
+            <video src="video/hologram_mapping.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+            <div class="video-fallback">영상 준비 중 (video/hologram_mapping.mp4)</div>
           </div>
-          <div class="feature-info">
+          <div class="feature-info-wide">
             <div>
-              <div class="num">01 · CAMERA &amp; LENS CONTROL</div>
-              <h3>실시간 카메라 &amp; 렌즈 제어 (3-Cam)</h3>
+              <div class="num">01 · SLIDE-MAPPED 3D HOLOGRAM &amp; ANNOTATION</div>
+              <h3>슬라이드 연동 3D 홀로그램 및 실시간 판서 제어</h3>
               <div class="tech-tags">
-                <span>Cine Camera Actor</span>
-                <span>UMG 슬라이더·버튼 제어</span>
+                <span>슬라이드-3D 에셋 매핑</span>
+                <span>태블릿 미러링 1:1 판서</span>
               </div>
             </div>
             <ul>
-              <li>실제 방송 카메라(광각 16-35mm, 표준 24-70mm, 망원 28-135mm) 3종 즉시 전환</li>
-              <li>화각(Zoom)·색온도(WB)·조리개(F-Stop)·셔터스피드·ISO 실시간 광학 파라미터 제어</li>
-              <li>방송 현장 실무 기준을 반영한 직관적인 카메라·렌즈 제어 UI 설계</li>
+              <li>각 슬라이드 페이지에 매핑된 3D 홀로그램 에셋을 홀로그램 버튼 토글로 띄우고, 다시 누르면 PPT가 띄워진 인게임 스튜디오 화면으로 즉시 복귀</li>
+              <li>태블릿 미러링 뷰에서 상하좌우 조작 및 1:1 좌표 동기화 판서로 원하는 부위를 즉시 강조</li>
+              <li>슬라이드 이동 및 모드 전환 시 이전 판서 레이어가 자동 초기화되는 강의 최적화 파이프라인</li>
             </ul>
           </div>
         </article>
 
-        <!-- 02 -->
-        <article class="feature-card">
+        <!-- 02 (핵심 하이라이트 대형 카드) -->
+        <article id="feat-02" class="feature-card highlight">
           <div class="video-wrap">
             <video src="video/whiteboard.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
             <div class="video-fallback">영상 준비 중 (video/whiteboard.mp4)</div>
           </div>
-          <div class="feature-info">
+          <div class="feature-info-wide">
             <div>
               <div class="num">02 · REAL-TIME WHITEBOARD</div>
               <h3>웹(태블릿) 연동 실시간 전자칠판 판서</h3>
@@ -490,56 +668,108 @@
           </div>
         </article>
 
-        <!-- 03 -->
-        <article class="feature-card">
-          <div class="video-wrap">
-            <video src="video/ppt.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
-            <div class="video-fallback">영상 준비 중 (video/ppt.mp4)</div>
-          </div>
-          <div class="feature-info">
-            <div>
-              <div class="num">03 · AUTO PPT PIPELINE</div>
-              <h3>PPT 자동 변환 및 원격 슬라이드 제어</h3>
-              <div class="tech-tags">
-                <span>LibreOffice CLI (soffice.exe)</span>
-                <span>HTTP API</span>
-                <span>동적 텍스처 로드</span>
-              </div>
+        <!-- 03 & 04 (2열 그리드) -->
+        <div class="feature-grid-2col">
+          <!-- 03 -->
+          <article id="feat-03" class="feature-card">
+            <div class="video-wrap">
+              <video src="video/ppt.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+              <div class="video-fallback">영상 준비 중 (video/ppt.mp4)</div>
             </div>
-            <ul>
-              <li>웹에서 .ppt/.pptx 파일 업로드 시 서버 백그라운드에서 고해상도 PNG 자동 변환</li>
-              <li>변환된 슬라이드를 가상 스튜디오 스크린에 실시간 송출 및 페이지 전환 연동</li>
-              <li>후반 편집·합성 공수를 대폭 절감하는 이러닝 제작 자동화 파이프라인</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- 04 -->
-        <article class="feature-card">
-          <div class="video-wrap">
-            <video src="video/ai.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
-            <div class="video-fallback">영상 준비 중 (video/ai.mp4)</div>
-          </div>
-          <div class="feature-info">
-            <div>
-              <div class="num">04 · LIVE AI ASSISTANT</div>
-              <h3>실시간 AI 어시스턴트 질의응답 연동</h3>
-              <div class="tech-tags">
-                <span>AI API 연동</span>
-                <span>WebSocket</span>
-                <span>3D 위젯 UI</span>
+            <div class="feature-info-compact">
+              <div>
+                <div class="num">03 · AUTO PPT PIPELINE</div>
+                <h3>PPT 자동 변환 및 원격 슬라이드 제어</h3>
+                <div class="tech-tags">
+                  <span>LibreOffice CLI</span>
+                  <span>HTTP API</span>
+                  <span>동적 텍스처</span>
+                </div>
               </div>
+              <ul>
+                <li>웹에서 .ppt/.pptx 업로드 시 서버 백그라운드에서 고해상도 PNG 자동 변환</li>
+                <li>변환된 슬라이드를 가상 스튜디오 스크린에 실시간 송출 및 페이지 제어</li>
+                <li>후반 편집·합성 공수를 대폭 절감하는 이러닝 제작 자동화 파이프라인</li>
+              </ul>
             </div>
-            <ul>
-              <li>강의 흐름을 끊지 않고 태블릿 웹 UI에서 질문 입력 시 스크린 모드 즉시 전환</li>
-              <li>질문과 AI 답변 텍스트를 가상 스튜디오 내 3D 화면에 실시간 렌더링</li>
-              <li>교수자와 학습자 간 시각적 설명력을 높이는 인터랙티브 교보재 기능</li>
-            </ul>
-          </div>
-        </article>
+          </article>
 
-        <!-- 05 (석양 & 야간 나란히 배치) -->
-        <article class="feature-card">
+          <!-- 04 -->
+          <article id="feat-04" class="feature-card">
+            <div class="video-wrap">
+              <video src="video/camera.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+              <div class="video-fallback">영상 준비 중 (video/camera.mp4)</div>
+            </div>
+            <div class="feature-info-compact">
+              <div>
+                <div class="num">04 · CAMERA &amp; LENS CONTROL</div>
+                <h3>실시간 카메라 &amp; 렌즈 제어 (3-Cam)</h3>
+                <div class="tech-tags">
+                  <span>Cine Camera Actor</span>
+                  <span>UMG 광학 제어</span>
+                </div>
+              </div>
+              <ul>
+                <li>실제 방송 카메라(광각 16-35mm, 표준 24-70mm, 망원 28-135mm) 3종 즉시 전환</li>
+                <li>화각·색온도(WB)·조리개(F-Stop)·셔터스피드·ISO 실시간 광학 파라미터 제어</li>
+                <li>방송 현장 실무 기준을 반영한 직관적인 카메라·렌즈 제어 UI 설계</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- 05 & 06 (2열 그리드) -->
+        <div class="feature-grid-2col">
+          <!-- 05 -->
+          <article id="feat-05" class="feature-card">
+            <div class="video-wrap">
+              <video src="video/ai.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+              <div class="video-fallback">영상 준비 중 (video/ai.mp4)</div>
+            </div>
+            <div class="feature-info-compact">
+              <div>
+                <div class="num">05 · LIVE AI ASSISTANT</div>
+                <h3>실시간 AI 어시스턴트 질의응답 연동</h3>
+                <div class="tech-tags">
+                  <span>AI API 연동</span>
+                  <span>WebSocket</span>
+                  <span>3D 위젯 UI</span>
+                </div>
+              </div>
+              <ul>
+                <li>강의 흐름을 끊지 않고 태블릿 웹 UI에서 질문 입력 시 스크린 모드 즉시 전환</li>
+                <li>질문과 AI 답변 텍스트를 가상 스튜디오 내 3D 화면에 실시간 렌더링</li>
+                <li>교수자와 학습자 간 시각적 설명력을 높이는 인터랙티브 교보재 기능</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 06 -->
+          <article id="feat-06" class="feature-card">
+            <div class="video-wrap">
+              <video src="video/lighting.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+              <div class="video-fallback">영상 준비 중 (video/lighting.mp4)</div>
+            </div>
+            <div class="feature-info-compact">
+              <div>
+                <div class="num">06 · LIGHTING &amp; VFX CONTROL</div>
+                <h3>야간 공간 조명 색온도 및 파티클 연동</h3>
+                <div class="tech-tags">
+                  <span>Point/Spot Light</span>
+                  <span>Niagara 불꽃 파티클</span>
+                </div>
+              </div>
+              <ul>
+                <li>야간 모드 전환 시 신전 주변 화로(Brazier)의 나이아가라 불꽃 이펙트 자동 점등</li>
+                <li>웜톤(전구색)·주광색·청색 3종 조명 색온도 프리셋 및 광량 슬라이더 제어</li>
+                <li>교과 분위기에 맞춘 스튜디오 공간 무드 실시간 라이팅 연출</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- 07 (석양 & 야간 나란히 배치 와이드 카드) -->
+        <article id="feat-07" class="feature-card">
           <div class="dual-video-grid">
             <div class="video-wrap">
               <span class="video-label">SUNSET · 석양</span>
@@ -552,9 +782,9 @@
               <div class="video-fallback">video/night.mp4</div>
             </div>
           </div>
-          <div class="feature-info">
+          <div class="feature-info-wide">
             <div>
-              <div class="num">05 · DYNAMIC TIME OF DAY</div>
+              <div class="num">07 · DYNAMIC TIME OF DAY</div>
               <h3>현장형 로케이션 시간대 실시간 전환</h3>
               <div class="tech-tags">
                 <span>Directional Light</span>
@@ -565,52 +795,6 @@
               <li>파르테논 신전 현장형 스튜디오에서 버튼 클릭 한 번으로 시간대 즉시 전환</li>
               <li>태양 고도·대기 산란·환경광을 노을(Sunset)과 야간(Night)으로 실시간 연출</li>
               <li>날씨·시간·장소 제약을 극복하는 가상 로케이션 촬영 환경 구현</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- 06 -->
-        <article class="feature-card">
-          <div class="video-wrap">
-            <video src="video/lighting.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
-            <div class="video-fallback">영상 준비 중 (video/lighting.mp4)</div>
-          </div>
-          <div class="feature-info">
-            <div>
-              <div class="num">06 · LIGHTING &amp; VFX CONTROL</div>
-              <h3>야간 공간 조명 색온도 및 파티클 연동</h3>
-              <div class="tech-tags">
-                <span>Point/Spot Light</span>
-                <span>Niagara 화로 불꽃 파티클</span>
-              </div>
-            </div>
-            <ul>
-              <li>야간 모드 전환 시 신전 주변 화로(Brazier)의 나이아가라 불꽃 이펙트 자동 점등</li>
-              <li>웜톤(전구색)·주광색·청색 3종 조명 색온도 프리셋 및 광량 슬라이더 제어</li>
-              <li>교과 분위기에 맞춘 스튜디오 공간 무드 실시간 라이팅 연출</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- 07 -->
-        <article class="feature-card">
-          <div class="video-wrap">
-            <video src="video/hologram_mapping.mp4" autoplay loop muted playsinline controls onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
-            <div class="video-fallback">영상 준비 중 (video/hologram_mapping.mp4)</div>
-          </div>
-          <div class="feature-info">
-            <div>
-              <div class="num">07 · SLIDE-MAPPED 3D HOLOGRAM &amp; ANNOTATION</div>
-              <h3>슬라이드 연동 3D 홀로그램 및 실시간 판서 제어</h3>
-              <div class="tech-tags">
-                <span>슬라이드-3D 에셋 매핑</span>
-                <span>태블릿 미러링 1:1 판서</span>
-              </div>
-            </div>
-            <ul>
-              <li>각 슬라이드 페이지에 매핑된 3D 홀로그램 에셋을 홀로그램 버튼 토글로 띄우고, 다시 누르면 PPT가 띄워진 인게임 스튜디오 화면으로 즉시 복귀</li>
-              <li>태블릿 미러링 뷰에서 상하좌우 조작 및 1:1 좌표 동기화 판서로 원하는 부위를 즉시 강조</li>
-              <li>슬라이드 이동 및 모드 전환 시 이전 판서 레이어가 자동 초기화되는 강의 최적화 파이프라인</li>
             </ul>
           </div>
         </article>
